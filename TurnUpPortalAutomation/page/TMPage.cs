@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TurnUpPortalAutomation.Pages
 {
     public class TMPage
@@ -54,6 +55,9 @@ namespace TurnUpPortalAutomation.Pages
             }
         }
 
+    }
+}
+        /**
         //Test case - Edit the created new Time record
         public void EditTimeRecord(IWebDriver driver)
         {
@@ -109,6 +113,8 @@ namespace TurnUpPortalAutomation.Pages
                 Console.WriteLine("Last records has not deleted");
 
             }
+        
         }
     }
 }
+*/
