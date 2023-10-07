@@ -1,37 +1,29 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 
 
 namespace TurnUpPortalAutomation.Pages
 {
     public class HomePage
     {
-        public void VerifySucssesLogin(IWebDriver driver)
-        {
-            //Check if user has logged in successfully
-            IWebElement helloHari = driver.FindElement(By.XPath($"//*[@id=\"logoutForm\"]/ul/li/a"));
-
-            if (helloHari.Text == "Hello hari!")
-            {
-                Console.WriteLine("User has loged in successefully");
-            }
-            else
-            {
-                Console.WriteLine("User has not loged in");
-            }
-        }
         public void GoToTMPage(IWebDriver driver)
         {
-            //Navigate to Time & Material module
-            IWebElement administrationDropdown = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
-            administrationDropdown.Click();
+            //Navigate to the administration dropdown 
 
-            IWebElement tmOption = driver.FindElement(By.XPath("//a[contains(text(),'Time & Materials')]"));
-            tmOption.Click();
+            IWebElement administrationdropdown = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            administrationdropdown.Click();
+
+            //Select time & materials module 
+
+            IWebElement timematerialoption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
+            timematerialoption.Click();
+        }
+        public void VerifyUserLogin(IWebDriver driver)
+        {
+            //Verify if the user has logged in successfully
+            IWebElement helloHari = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
+
+            Assert.That(helloHari.Text == "Hello hari!", "Invalid Username/Password");
         }
     }
 }

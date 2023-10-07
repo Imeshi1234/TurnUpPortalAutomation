@@ -7,45 +7,55 @@ using System.Text;
 using System.Threading.Tasks;
 using TurnUpPortalAutomation.Pages;
 using NUnit.Framework;
-/**
+using TurnUpPortalAutomation.Utilities;
+
 namespace TurnUpPortalAutomation.Test
 {
-    public class TMTest
+    [TestFixture]
+    public class TMTests : CommonDriver
     {
+
         [SetUp]
         public void SetUpTM()
         {
-            //Open chrome browser
-            IWebDriver driver = new ChromeDriver();
-            //Loginpage page object initialization and definition
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginActions(driver);
+            driver = new ChromeDriver();
 
-            //Homepage page object initialization and definition
-            HomePage homePageObj = new HomePage();
-            homePageObj.VerifySucssesLogin(driver);
-            homePageObj.GoToTMPage(driver);
+            //LoginPage object initialization and definition
+            LoginPage loginPageobj = new LoginPage();
+            loginPageobj.LoginActions(driver);
 
+            //HomePage object initialization and definition
+            HomePage homePageobj = new HomePage();
+            homePageobj.GoToTMPage(driver);
+            homePageobj.VerifyUserLogin(driver);
         }
-        [Test]
+
+        [Test, Order(1), Description(" This test creates a new time/Material record")]
         public void TestCreateTimeRecord()
         {
-           
+            //TMPage object initialization and definition
+            TMPage tmPageobj = new TMPage();
+            tmPageobj.CreateTimeRecord(driver);
         }
-        [Test]
+
+        [Test, Order(2), Description(" This test Updates a new time/Material record")]
         public void TestEditTimeRecord()
         {
+            TMPage tmPageobj = new TMPage();
+            tmPageobj.EditTimeRecord(driver);
         }
-        [Test]
+
+        [Test, Order(3), Description(" This test deletes a new time/Material record")]
         public void TestDeleteTimeRecord()
         {
-            tmPageObj.DeleteTimeRecord(driver);
-
+            TMPage tmPageobj = new TMPage();
+            tmPageobj.DeleteTimeRecord(driver);
         }
+
         [TearDown]
         public void CloseTestRun()
         {
-            driver.Quit();
+            driver.Close();
         }
 
 
@@ -65,18 +75,5 @@ namespace TurnUpPortalAutomation.Test
 
 
 
-
-
-
-
-        
-        
-
-        //TMpage page object initialization and definition
-        TMPage tmPageObj = new TMPage();
-        tmPageObj.CreateTimeRecord(driver);
-        tmPageObj.EditTimeRecord(driver);
-        
     }
 }
-*/
